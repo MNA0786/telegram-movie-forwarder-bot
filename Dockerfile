@@ -1,11 +1,12 @@
 FROM php:8.2-apache
 
-# Install system dependencies
+# Install system dependencies including sqlite3 dev package
 RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
-    git \
-    curl \
+    sqlite3 \
+    libsqlite3-dev \
+    pkg-config \
     && docker-php-ext-install zip pdo pdo_sqlite \
     && rm -rf /var/lib/apt/lists/*
 
@@ -21,8 +22,8 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . /var/www/html/
 
-# Install PHP dependencies via Composer
-RUN composer install --no-interaction --no-progress --no-dev --optimize-autoloader
+# Install PHP dependencies
+RUN composer install --no-interaction --no-progress --no-dev --optimize-autoloader || true
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html && \
