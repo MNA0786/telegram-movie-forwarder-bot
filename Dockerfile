@@ -1,12 +1,13 @@
 FROM php:8.2-apache
 
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     libzip-dev \
     unzip \
     sqlite3 \
     libsqlite3-dev \
-    && docker-php-ext-install zip pdo pdo_sqlite sqlite3
+    && docker-php-ext-install zip pdo pdo_sqlite \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
