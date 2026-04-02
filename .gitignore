@@ -1,0 +1,27 @@
+# Environment files
+.env
+.env.local
+
+# Database
+movies.db
+movies.db-journal
+
+# Logs
+error.log
+indexing_log.json
+processed_posts.json
+
+# Backups
+backups/
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Composer
+vendor/
+composer.lock
