@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - MAIN_CHANNEL_ID=${MAIN_CHANNEL_ID}
+      - SERIAL_CHANNEL_ID=${SERIAL_CHANNEL_ID}
+      - THEATER_CHANNEL_ID=${THEATER_CHANNEL_ID}
+      - BACKUP_CHANNEL_ID=${BACKUP_CHANNEL_ID}
+      - REQUEST_GROUP_ID=${REQUEST_GROUP_ID}
+    env_file:
+      - .env
